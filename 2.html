@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>Title</title>
+    <script src="lufylegend-1.10.1.min.js"></script>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        max-width: 414px;
+        height: 100vh;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <script>
+    var w = document.body.offsetWidth
+    var h = document.body.offsetHeight
+    var parent1;
+    var parent2;
+    var ball;
+    var speed = 1;
+    init(speed, 'canvas', w, h, main);
+
+    function main() {
+        LGlobal.stageScale = LStageScaleMode.SHOW_ALL
+        parent1 = new LSprite();
+        addChild(parent1);
+        parent1.graphics.drawRect(1,'#000000',[-50,-50,100,100]);
+        parent1.x = 60;
+        parent1.y = 60;
+
+        parent2 = new LSprite();
+        addChild(parent2);
+        parent2.graphics.drawRect(1,'#000000',[-50,-50,100,100]);
+        parent2.x = 170;
+        parent2.y = 60;
+
+        ball = new LSprite();
+        parent1.addChild(ball);
+        ball.graphics.drawArc(1,'#000000',[0,0,20,0,2*Math.PI],true,'#000000');
+        ball.x = 5;
+        ball.y = 5;
+        ball.addEventListener(LMouseEvent.MOUSE_DOWN, onMouseDown);
+
+    }
+
+    function onMouseDown() {
+        parent2.addChild(ball);
+    }
+
+    </script>
+</body>
+
+</html>
